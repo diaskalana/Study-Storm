@@ -1,0 +1,36 @@
+{
+  "name": "coursemanagementservice",
+  "version": "1.0.0",
+  "description": "Course Management Microservice Module For StudyStorm",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SLIITStudyStorm/CourseManagementService.git"
+  },
+  "author": "Sachinthaka Ayeshmantha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SLIITStudyStorm/CourseManagementService/issues"
+  },
+  "homepage": "https://github.com/SLIITStudyStorm/CourseManagementService#readme",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.7",
+    "path": "^0.12.7",
+    "sequelize": "^6.37.3"
+  }
+}
