@@ -1,0 +1,21 @@
+{
+  "name": "learnerservice",
+  "version": "1.0.0",
+  "description": "Leaner servic for microservice architecture",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "jest"
+  },
+  "author": "sathira dissanayaka",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.3",
+    "mysql2": "^3.9.7"
+  }
+}
