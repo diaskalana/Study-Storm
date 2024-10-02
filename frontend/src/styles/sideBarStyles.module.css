@@ -1,0 +1,48 @@
+.itmBtn{
+    margin: 5px 8px !important;
+    border-radius: 5px !important;
+    padding: 0 !important;
+    padding-left: 12px !important;
+}
+
+.itmBtn:hover{
+    background: #f4f0e6 !important;
+    color: #f78f1e !important;
+}
+
+.active{
+    background: #f4f0e6 !important;
+    box-shadow: 0px 2px 6px 0px #f78f1e5c;
+    color: #f78f1e !important;
+    font-weight: 700;
+}
+
+.active:hover{
+    background: #e6f6f1 !important;
+}
+
+.openMenuBtn{
+    position: fixed;
+    z-index: 1;
+    cursor: pointer;
+    background: white;
+    color: #f78f1e;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    border-bottom-right-radius: 5px;
+}
+
+.closeMenuBtn{
+    position: absolute;
+    right: 10px;
+    padding: 4px;
+    background: #f4f0e6;
+    color: #f78f1e;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.openMenuBtn:hover, .closeMenuBtn:hover{
+    background: #f78f1e !important;
+    color: white !important;
+}

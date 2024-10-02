@@ -1,0 +1,44 @@
+.mainDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.mainText{
+    background: url('/NotFound.png');
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-position: top;
+    color: transparent;
+    font-size: 200px;
+    font-family: fantasy;
+    letter-spacing: 15px;
+    margin: 0;
+}
+
+.mainPara{
+    font-size: 20px;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.para{
+    text-align: center;
+    margin: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .mainText{
+        font-size: 20vw !important;
+    }
+    .mainPara{
+        font-size: 3vw !important;
+    }
+    .para{
+        font-size: 2vw !important;
+    }
+    
+}

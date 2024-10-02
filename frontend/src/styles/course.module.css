@@ -1,0 +1,22 @@
+.imgDiv {
+    position: relative; /* Add position relative to the container */
+    cursor: pointer;
+}
+
+.imgCloseIcon {
+    display: none !important; /* Initially hide the close icon */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the icon */
+    font-size: 50px  !important;
+    color: red;
+}
+
+.imgDiv:hover .img{
+    opacity: 0.5;
+}
+
+.imgDiv:hover .imgCloseIcon {
+    display: block !important; /* Show the close icon on hover */
+}

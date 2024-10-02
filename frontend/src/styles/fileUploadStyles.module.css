@@ -1,0 +1,30 @@
+.imgDetailDiv{
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 38%;
+    top: 38%;
+}
+
+.imgCloseDiv{
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 85%;
+}
+
+.imgDiv:hover .img{
+    opacity: 0.5;
+}
+
+.imgDiv:hover .imgDetailDiv{
+    display: flex;
+}
+
+.imgDiv:hover .imgCloseDiv{
+    display: flex;
+}

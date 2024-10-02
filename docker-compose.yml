@@ -1,0 +1,174 @@
+version: '3.1'
+
+services:
+  auth-db:
+    image: mysql:latest
+    restart: always
+    container_name: auth-db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: auth
+    ports:
+      - "3309:3306"
+    volumes:
+      - mysql_data_auth:/var/lib/mysql
+
+  courses-db:
+    image: mysql:latest
+    restart: always
+    container_name: courses-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: courses
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_data_courses:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]  # Health check command
+      timeout: 10s
+      retries: 5
+      interval: 5s
+
+  notification-db:
+    image: mongo:latest
+    restart: always
+    container_name: notification-db
+    ports:
+      - "27017"
+    environment:
+      MONGODB_CONNECTION_STRING: "mongodb+srv://avishkanuwan73:12345Avishka@cluster0.ijwojwx.mongodb.net/test"
+
+  learner-db:
+    image: mongo:latest
+    restart: always
+    container_name: learner-db
+    ports:
+      - "27017"
+    environment:
+      MONGODB_CONNECTION_STRING: "mongodb+srv://sathiradissanayaka45:dilshara224@timetabletesting.zbavpto.mongodb.net/?retryWrites=true&w=majority&"
+
+  payment-db:
+    image: mongo:latest
+    restart: always
+    container_name: payment-db
+    ports:
+      - "27017"
+    environment:
+      MONGODB_CONNECTION_STRING: "mongodb+srv://kalanadias:Kalana123@cluster0.ewbh7py.mongodb.net/PaymentServiceForStudyStorm?retryWrites=true&w=majority&appName=Cluster0"
+
+  feedback-db:
+    image: mongo:latest
+    restart: always
+    container_name: feedback-db
+    ports:
+      - "27017"
+    environment:
+      MONGODB_CONNECTION_STRING: "mongodb+srv://sathiradissanayaka45:dilshara224@timetabletesting.zbavpto.mongodb.net/?retryWrites=true&w=majority&"
+
+  auth-service:
+    build:
+      context: ./backend/AuthenticationService
+      dockerfile: Dockerfile
+    container_name: auth-service
+    restart: always
+    depends_on:
+      - auth-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://auth-db:3306/auth
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8082:8082"
+
+  course-service:
+    build:
+      context: ./backend/CourseManagementService
+      dockerfile: Dockerfile
+    container_name: course-service
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: courses-db
+      DB_USER: root
+      MYSQL_DATABASE: courses
+      MYSQL_ROOT_PASSWORD: root
+      JWT_SECRET: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+      NOTIFICATION_SERVER_URL: http://notification-service:4000/
+    depends_on:
+      courses-db:
+        condition: service_healthy
+
+  notification-service:
+    build:
+      context: ./backend/NotificationService
+      dockerfile: Dockerfile
+    container_name: notification-service
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      MONGO_URI: "mongodb+srv://avishkanuwan73:12345Avishka@cluster0.ijwojwx.mongodb.net/test"
+      EMAIL: 'avishkatest123@gmail.com'
+      PASSWORD: 'rvhe fqfh npka kfan'
+    depends_on:
+      - notification-db
+
+  learner-service:
+    build:
+      context: ./backend/LearnerService
+      dockerfile: Dockerfile
+    container_name: learner-service
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      MONGODB_URL: mongodb+srv://sathiradissanayaka45:dilshara224@timetabletesting.zbavpto.mongodb.net/?retryWrites=true&w=majority&
+    depends_on:
+      - learner-db
+
+  feedback-service:
+    build:
+      context: ./backend/FeedbackAndRatingService
+      dockerfile: Dockerfile
+    container_name: feedback-service
+    ports:
+      - "5080:5080"
+    environment:
+      PORT: 5080
+      MONGODB_URL: mongodb+srv://sathiradissanayaka45:dilshara224@timetabletesting.zbavpto.mongodb.net/?retryWrites=true&w=majority&
+    depends_on:
+      - learner-db
+
+  payment-service:
+    build:
+      context: ./backend/PaymentService
+      dockerfile: Dockerfile
+    container_name: payment-service
+    ports:
+      - "3001:3001"
+    environment:
+      PAYHERE_SECRET: "NDI3NDY0OTg1NTkzMzMxNDIzMjQxMjMwMzczODUxNTk2OTM1NTA0"
+      MONGODB_URI: "mongodb+srv://kalanadias:Kalana123@cluster0.ewbh7py.mongodb.net/PaymentServiceForStudyStorm?retryWrites=true&w=majority&appName=Cluster0"
+      COURSE_SERVER: http://course-service:5000
+      LEARNER_SERVER: http://learner-service:8000
+      NOTIFICATION_SERVER: http://notification-service:4000
+    depends_on:
+      - payment-db
+      
+  studystorm-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: studystorm-app
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_COURSE_SERVER_URL: http://localhost:5000/
+      VITE_AUTH_SERVER_URL: http://localhost:8082/
+      VITE_LEARNER_SERVER_URL: http://localhost:8000/
+      VITE_FEEDBACK_SERVER_URL: http://localhost:5080/
+
+volumes:
+  mysql_data_auth:
+  mysql_data_courses:

@@ -1,0 +1,21 @@
+[submodule "backend/CourseManagementService"]
+	path = backend/CourseManagementService
+	url = https://github.com/SLIITStudyStorm/CourseManagementService.git
+[submodule "backend/FeedbackAndRatingService"]
+	path = backend/FeedbackAndRatingService
+	url = https://github.com/SLIITStudyStorm/FeedbackAndRatingService.git
+[submodule "backend/AuthenticationService"]
+	path = backend/AuthenticationService
+	url = https://github.com/SLIITStudyStorm/AuthenticationService.git
+[submodule "backend/NotificationService"]
+	path = backend/NotificationService
+	url = https://github.com/SLIITStudyStorm/NotificationService.git
+[submodule "backend/LearnerService"]
+	path = backend/LearnerService
+	url = https://github.com/SLIITStudyStorm/LearnerService.git
+[submodule "backend/PaymentService"]
+	path = backend/PaymentService
+	url = https://github.com/SLIITStudyStorm/PaymentService.git
+[submodule "feedbackManagmentService"]
+	path = feedbackManagmentService
+	url = https://github.com/SLIITStudyStorm/feedbackManagmentService.git

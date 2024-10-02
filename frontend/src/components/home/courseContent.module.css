@@ -1,0 +1,54 @@
+.pageContainer {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gridContainer {
+    width: 100%;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+}
+
+.thumbnail {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.fileRow {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.fileRow img {
+    margin-right: 10px;
+}
